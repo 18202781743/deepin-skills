@@ -1,12 +1,12 @@
 # DTK 源码编译与调试
 
-> 适用场景：修改 DTK 自身源码（dtkcore/dtkgui/dtkwidget/dtkdeclarative/dtklog/qt5integration/qt5platform-plugins）后，需要编译、运行和调试。
+> 适用场景：修改 DTK 自身源码（dtkcore/dtkgui/dtkwidget/dtkdeclarative/dtklog 及平台插件）后，需要编译、运行和调试。
 
 ---
 
 ## 1. DTK5/DTK6 同一套代码
 
-DTK 各项目（dtkcore、dtkgui、dtkwidget、dtkdeclarative、dtklog）以及两个平台插件（qt5integration、qt5platform-plugins）的 DTK5 和 DTK6 是**同一套代码**，通过 CMake option `DTK5` 切换编译目标。修改代码时需**同时保证 DTK5 和 DTK6 都能编译运行**。
+DTK 各项目（dtkcore、dtkgui、dtkwidget、dtkdeclarative、dtklog）以及两个平台插件的 DTK5 和 DTK6 是**同一套代码**，通过 CMake option `DTK5` 切换编译目标。修改代码时需**同时保证 DTK5 和 DTK6 都能编译运行**。
 
 `dtkcommon` 是唯一的例外——它不区分 DTK5/DTK6。
 
@@ -23,8 +23,8 @@ DTK5 和 DTK6 由同一项目源码构建时，**发布版本号必须保持一�
 | dtkwidget | 6.7.44 | 6.7.44 |
 | dtkdeclarative | 6.7.44 | 6.7.44 |
 | dtklog | 6.7.44 | 6.7.44 |
-| qt5integration | 6.7.44 | 6.7.44 |
-| qt5platform-plugins | 6.7.44 | 6.7.44 |
+| dde-qtintegration | 6.7.44 | 6.7.44 |
+| dde-qtplatform-plugins | 6.7.44 | 6.7.44 |
 
 表中的 `6.7.44` 仅说明同一项目的两种构建变体必须配对使用同一发布版本，并不要求不同 DTK 项目同步发布相同补丁版本。
 
@@ -150,7 +150,7 @@ make -j$(nproc)
 
 ### 3.3 平台插件
 
-qt5integration 和 qt5platform-plugins 建议直接安装到系统中测试：
+两个平台插件建议直接安装到系统中测试：
 
 ```bash
 cmake .. -DDTK5=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr
