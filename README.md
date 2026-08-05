@@ -49,9 +49,19 @@ bash <(curl -fsSL https://raw.githubusercontent.com/linuxdeepin/deepin-skills/ma
 | [`dde-control-center-development`](skills/dde-control-center-development/SKILL.md) | deepin/UOS v25 | 用于为 DDE 控制中心开发系统设置模块和插件。适合需要理解模块树、导航和搜索机制，使用控制中心的 C++ 或 QML API 构建设置页面，处理 D-Bus 与数据交互，以及完成插件构建、翻译、打包、安装和本地调试的开发任务。 |
 | [`dde-tray-development`](skills/dde-tray-development/SKILL.md) | deepin/UOS v25 | 用于开发符合 DDE 桌面交互方式的任务栏托盘插件、快捷面板控件及相关交互功能。该 skill 覆盖托盘插件接口和加载行为、状态与消息协议、右键菜单、快捷面板详情页，以及任务栏位置变化等集成场景，帮助开发者实现稳定、规范的任务栏插件。 |
 
+## 示例项目
+
+`examples/` 目录收录使用本仓库 Skill 生成的完整项目，用于展示 Skill 在实际开发任务中的使用方式和产出结果。示例项目包含可构建的源码及必要的工程文件，可用于学习、验证和回归相关开发规范。
+
+| 示例 | 使用的 Skill | 说明 |
+| --- | --- | --- |
+| [DTK Code Viewer](https://github.com/linuxdeepin/deepin-skills/tree/master/examples/dtk-codeviewer) | `dtk-development` | 一个基于 DTK6 和 QWidget 的代码及文本文件查看器。示例覆盖 DTK 应用生命周期、单实例、标签页、文件对话框、大文件分块加载、主题与 DCI 图标、DConfig、日志、翻译、CMake 安装和 Debian 打包。 |
+
+每个示例的依赖、构建命令和功能说明见示例目录中的 README。
+
 ## 目录结构
 
-仓库将所有对外 skill 集中在 `skills/`，安装脚本位于 `scripts/`：
+仓库将所有对外 skill 集中在 `skills/`，使用 Skill 生成的项目位于 `examples/`，安装脚本位于 `scripts/`：
 
 ```text
 deepin-skills/
@@ -60,6 +70,8 @@ deepin-skills/
 │   ├── dde-shell-development/
 │   ├── dde-control-center-development/
 │   └── dde-tray-development/
+├── examples/
+│   └── dtk-codeviewer/
 └── scripts/
     └── install.sh
 ```
