@@ -20,5 +20,5 @@
 - [ ] Q_INTERFACES(PluginsItemInterfaceV2)
 - [ ] pluginName() 返回唯一标识
 - [ ] init() 保存 proxyInter
-- [ ] flags() 返回 Type_Tray | Attribute_CanSetting
+- [ ] flags() 至少返回 Type_Tray，不强制添加与任务无关的属性标志
 - [ ] IID 使用 "com.deepin.dock.PluginsItemInterface_V2"

@@ -40,7 +40,7 @@ IID 声明：
 | `itemContextMenu` | `virtual const QString itemContextMenu(const QString &itemKey)` | 返回右键菜单的 JSON 数据，详见 `context-menu.md` |
 | `invokedMenuItem` | `virtual void invokedMenuItem(const QString &itemKey, const QString &menuId, const bool checked)` | 右键菜单项被点击的回调 |
 
-> **翻译说明**：dde-tray-loader 主程序只加载内置的 `dde-dock` 翻译文件，**不会自动加载第三方插件的独立翻译文件**。插件必须在 `init()` 函数中主动加载自己的翻译文件。详见 SKILL.md 中的「翻译加载」章节。
+> **翻译说明**：dde-tray-loader 主程序只加载内置的 `dde-dock` 翻译文件，**不会自动加载第三方插件的独立翻译文件**。插件必须在 `init()` 中创建并持有 `QTranslator`，从插件安装目录加载对应 `.qm` 文件，再通过 `QCoreApplication::installTranslator()` 注册。不要使用函数内临时 `QTranslator`，否则离开 `init()` 后翻译对象会被销毁。
 
 | `itemSortKey` | `virtual int itemSortKey(const QString &itemKey)` | 返回控件排序位置，1 为默认，0 为左侧，-1 为右侧 |
 | `setSortKey` | `virtual void setSortKey(const QString &itemKey, const int order)` | 用户拖拽后保存新的排序位置 |

@@ -2,7 +2,7 @@
 
 ## 任务
 
-创建一个简单的控制中心插件：
+创建一个适用于 deepin/UOS v25 的简单控制中心插件：
 1. CMakeLists.txt 配置
 2. 插件类继承控制中心基类
 3. JSON 元数据文件
@@ -10,15 +10,17 @@
 ## 期望输出
 
 代码应：
-1. 使用 find_package(DdeControlCenter)
-2. 继承正确的插件基类并实现接口
-3. 创建正确的 JSON 元数据
+1. 使用 `find_package(DdeControlCenter REQUIRED)` 和 `Dde::Control-Center`
+2. 使用 `DCC_FACTORY_CLASS` 注册数据对象
+3. 使用 `dcc_install_plugin` 安装插件并提供 v25 元数据
 
 ## 验证要点
 
-- [ ] find_package(Dtk6Core Dtk6Widget Dtk6Gui REQUIRED)
-- [ ] Q_PLUGIN_METADATA 宏
-- [ ] JSON 文件包含正确的 api 版本
+- [ ] `find_package(DdeControlCenter REQUIRED)`
+- [ ] 链接 `Dde::Control-Center`
+- [ ] 使用 `DCC_FACTORY_CLASS(MyPluginModule)`，并包含生成的 moc 文件
+- [ ] 使用 `dcc_install_plugin(NAME myplugin TARGET myplugin)`
+- [ ] `qml/metadata.json` 是合法 JSON，且 `Version` 为 `1.0`
 
 ## 参考
 
