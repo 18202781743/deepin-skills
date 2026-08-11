@@ -200,15 +200,52 @@ public:
 
 ## 配置注册
 
-快捷面板插件必须在配置文件中注册才能显示，否则任务栏上的快捷面板不会显示此插件相关的快捷面板，需要将快捷面板的pluginName，添加到配置中。
+快捷面板插件必须在 `quickPlugins` 中注册才能显示。注册值使用
+`pluginName()` 的返回值；未注册时，即使插件已经成功加载，任务栏快捷面板也不会展示它。
 
 ### 配置文件
 
-路径：`/usr/share/dsg/configs/org.deepin.dde.dock.tray.quick-plugins.json`
+配置元数据路径：
 
-配置键：`quickPlugins`
+`/usr/share/dsg/configs/org.deepin.ds.dock/org.deepin.ds.dock.tray.json`
 
-### 配置示例
+对应的 DConfig 参数：
+
+- App ID：`org.deepin.ds.dock`
+- Resource：`org.deepin.ds.dock.tray`
+- Key：`quickPlugins`
+
+不要直接修改 `/usr/share/dsg/configs` 下的元数据文件。添加自定义插件时，使用
+`dde-dconfig` 读取并更新 `quickPlugins`。
+
+### 使用 dde-dconfig 注册
+
+先读取现有插件列表：
+
+```bash
+dde-dconfig get \
+    -a org.deepin.ds.dock \
+    -r org.deepin.ds.dock.tray \
+    -k quickPlugins
+```
+
+将自定义插件的 `pluginName()` 追加到现有数组后，写回完整数组：
+
+```bash
+dde-dconfig set \
+    -a org.deepin.ds.dock \
+    -r org.deepin.ds.dock.tray \
+    -k quickPlugins \
+    -v '["network", "bluetooth", "my-plugin"]'
+```
+
+上面的数组仅为示例。`dde-dconfig set` 会替换整个 `quickPlugins` 值，因此必须保留
+查询结果中的已有插件，只追加自定义插件名。数组顺序决定快捷面板中的显示顺序。
+
+写入后再次执行 `dde-dconfig get` 验证结果；如任务栏未立即刷新，重启任务栏或重新
+登录后再检查。
+
+### 配置值示例
 
 ```json
 {
@@ -218,10 +255,6 @@ public:
 
 值为 `pluginName()` 返回值的数组，顺序决定显示顺序。
 
-### 注册步骤
-
-将 `pluginName()` 返回值添加到 `quickPlugins` 数组。
-
 ## 常见问题
 
 ### 快捷面板不显示
@@ -229,7 +262,8 @@ public:
 排查步骤：
 1. 确认 `flags()` 返回 `Type_Quick | Quick_Panel_Full`（或其他 `Quick_Panel_*`）
 2. 确认 `itemWidget(Dock::QUICK_ITEM_KEY)` 返回了有效控件
-3. 确认插件名称已添加到配置文件
+3. 使用 `dde-dconfig get -a org.deepin.ds.dock -r org.deepin.ds.dock.tray -k quickPlugins`
+   确认插件名称已注册
 4. 确认快捷面板控件只使用了 `setFixedHeight()`，没有使用 `setFixedSize()`
 
 ### Tooltip 不显示

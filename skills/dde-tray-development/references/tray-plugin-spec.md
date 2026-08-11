@@ -306,6 +306,9 @@ Dock 框架会根据 `pluginIsDisable()` 返回值自动更新 `quickPlugins` �
 > **重要说明**：
 > - **插件不需要直接操作 DConfig**，通过 `pluginIsDisable()` 和 `saveValue()` 与 Dock 交互
 > - 用户通过「控制中心 → 个性化 → 任务栏」管理快捷面板插件时，Dock 自动调用 `pluginStateSwitched()`
+> - 上述约束针对插件运行时代码；开发或部署自定义快捷面板插件时，可使用
+>   `dde-dconfig` 将 `pluginName()` 注册到 `quickPlugins`。具体命令见
+>   [快捷面板插件开发指南：配置注册](quick-panel-guide.md#配置注册)
 
 ## 9. JSON 元数据格式
 
