@@ -59,6 +59,14 @@ bash <(curl -fsSL https://raw.githubusercontent.com/linuxdeepin/deepin-skills/ma
 
 每个示例的依赖、构建命令和功能说明见示例目录中的 README。
 
+## 社区活动
+
+本项目参与过以下社区活动：
+
+| 活动 | 开始时间 | 结束时间 |
+| --- | --- | --- |
+| [10 亿 Token 奖池：写出属于你的 deepin 桌面插件](https://bbs.deepin.org/post/300665) | 2026-08-10 | 2026-09-14 |
+
 ## 目录结构
 
 仓库将所有对外 skill 集中在 `skills/`，使用 Skill 生成的项目位于 `examples/`，安装脚本位于 `scripts/`：

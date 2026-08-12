@@ -49,6 +49,14 @@ Choose a skill according to the target system version:
 | [`dde-control-center-development`](skills/dde-control-center-development/SKILL.md) | deepin/UOS v25 | Use this skill to build system settings modules and plugins for DDE Control Center. It covers the module tree, navigation, and search architecture; C++ and QML APIs for settings pages; D-Bus and data interactions; plus plugin builds, translations, packaging, installation, and local debugging. |
 | [`dde-tray-development`](skills/dde-tray-development/SKILL.md) | deepin/UOS v25 | Use this skill to create DDE taskbar tray plugins, quick-panel controls, and related interactions that follow DDE desktop conventions. It covers tray plugin interfaces and loading behavior, status and messaging protocols, context menus, quick-panel detail pages, and integration points such as taskbar position changes for stable, well-integrated taskbar plugins. |
 
+## Community Events
+
+This project has participated in the following community events:
+
+| Event | Start date | End date |
+| --- | --- | --- |
+| [1 Billion Token Prize Pool: Build Your Own deepin Desktop Plugin](https://bbs.deepin.org/post/300665) | 2026-08-10 | 2026-09-14 |
+
 ## Repository Layout
 
 All public skills are grouped under `skills/`, and the installer is stored in `scripts/`:
