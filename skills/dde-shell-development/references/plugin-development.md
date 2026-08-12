@@ -4,7 +4,7 @@
 
 | 类型 | 基类 | 场景 | 可含子插件 |
 |------|------|------|-----------|
-| Applet | `DApplet` | 基础部件（天气、时钟、系统监控） | 否 |
+| Applet | `DApplet` | 基础部件（天气、时钟、网络状态） | 否 |
 | Containment | `DContainment` | 容器（应用抽屉、设置分组） | 是 |
 | Panel | `DPanel` | 顶级面板（Dock、顶栏、侧栏） | 是 |
 
@@ -109,6 +109,23 @@ QString WeatherApplet::temperature() const { return m_temperature; }
 D_APPLET_CLASS(WeatherApplet)
 #include "weatherapplet.moc"
 ```
+
+#### C++ 插件注册（不可省略）
+
+每个 C++ Applet、Containment 或 Panel 必须在一个实现文件中完成以下注册：
+
+```cpp
+#include <pluginfactory.h>
+
+// 类实现……
+
+D_APPLET_CLASS(WeatherApplet)
+#include "weatherapplet.moc"
+```
+
+- `D_APPLET_CLASS(ClassName)` 为插件生成带 `Q_PLUGIN_METADATA` 的 `DAppletFactory`；缺少它时，`.so` 仍可能链接成功，但 dde-shell 无法通过 `QPluginLoader` 创建插件实例。
+- 宏在整个插件中只使用一次，类名必须与实际的 `DApplet`、`DContainment` 或 `DPanel` 子类一致。
+- `#include "<实现文件名>.moc"` 紧跟宏之后；例如宏位于 `weatherapplet.cpp`，就包含 `"weatherapplet.moc"`。宏会在 `.cpp` 中生成带 `Q_OBJECT` 的工厂类，因此不能只依赖头文件的 AUTOMOC 输出。
 
 CMakeLists.txt：
 ```cmake

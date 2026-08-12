@@ -16,6 +16,7 @@ dde-shell 是 DDE 桌面环境的 Shell 核心，负责 Dock、顶栏、侧栏�
 ## 关键约束
 
 - 先根据宿主和父子关系选择 Applet、Containment 或 Panel；插件 ID、`Plugin.Parent`、安装包目录和运行时父插件必须一致。
+- 每个 C++ Applet、Containment 或 Panel 的实现文件必须包含 `<pluginfactory.h>`，并在文件末尾依次写入 `D_APPLET_CLASS(ClassName)` 和 `#include "<实现文件名>.moc"`。缺少工厂注册时动态库可能构建成功，但 dde-shell 无法实例化并加载插件。
 - Applet/Containment/Panel 属于 dde-shell 插件体系，不要混用 dde-tray-loader 的 IID、flags 或消息协议。
 - LayerShell 窗口必须同时核对目标屏幕、锚点、层级和键盘交互；只有需要保留工作区的面板才设置排他区域，并验证多屏和热插拔行为。
 
