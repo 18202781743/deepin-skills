@@ -1,6 +1,6 @@
 ---
 name: dde-control-center-development
-description: "用于 deepin/UOS v25 的 DDE 控制中心框架与插件开发维护。当用户需要新增或修改控制中心设置模块、模块树与搜索、DccObject、控制中心 QML 组件、D-Bus 数据交互、插件构建安装或加载调试时使用。"
+description: "用于 deepin/UOS v25 的 DDE 控制中心框架与插件开发维护。当用户需要新增或修改控制中心设置模块、模块树与搜索、DccObject、控制中心 QML 组件、D-Bus 数据交互、插件构建安装或加载调试时使用。 $dtk-development"
 ---
 
 # DDE 控制中心开发指南

@@ -1,6 +1,6 @@
 ---
 name: dde-tray-development
-description: "用于 deepin/UOS v25 的 dde-tray-loader 托盘和快捷面板插件开发维护。当用户需要实现 PluginsItemInterfaceV2、托盘图标、PluginFlags、快捷面板控件与详情页、Dock 消息协议、右键菜单或插件加载显示排查时使用。"
+description: "用于 deepin/UOS v25 的 dde-tray-loader 托盘和快捷面板插件开发维护。当用户需要实现 PluginsItemInterfaceV2、托盘图标、PluginFlags、快捷面板控件与详情页、Dock 消息协议、右键菜单或插件加载显示排查时使用。 $dtk-development"
 ---
 
 # DDE 托盘插件开发指南

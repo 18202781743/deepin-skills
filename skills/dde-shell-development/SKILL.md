@@ -1,6 +1,6 @@
 ---
 name: dde-shell-development
-description: "用于 deepin/UOS v25 的 dde-shell Applet、Containment、Panel 插件及 LayerShell 窗口开发维护。当用户需要扩展 Dock、顶栏、侧栏等 Shell 面板，使用 DApplet/DPanel、Shell QML API、插件桥接，或创建贴靠屏幕边缘的 Wayland 窗口时使用。"
+description: "用于 deepin/UOS v25 的 dde-shell Applet、Containment、Panel 插件及 LayerShell 窗口开发维护。当用户需要扩展 Dock、顶栏、侧栏等 Shell 面板，使用 DApplet/DPanel、Shell QML API、插件桥接，或创建贴靠屏幕边缘的 Wayland 窗口时使用。 $dtk-development"
 ---
 
 # dde-shell 开发指南
