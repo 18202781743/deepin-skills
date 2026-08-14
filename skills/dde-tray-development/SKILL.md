@@ -1,6 +1,6 @@
 ---
 name: dde-tray-development
-description: "用于 deepin/UOS v25 的 dde-tray-loader 托盘和快捷面板插件开发维护。当用户需要实现 PluginsItemInterfaceV2、托盘图标、PluginFlags、快捷面板控件与详情页、Dock 消息协议、右键菜单或插件加载显示排查时使用。"
+description: "用于 deepin/UOS v25 的 dde-tray-loader 托盘和快捷面板插件开发维护。当用户需要实现 PluginsItemInterfaceV2、托盘图标、PluginFlags、快捷面板控件与详情页、Dock 消息协议、右键菜单或插件加载显示排查时使用。 涉及 DTK 通用 API 时需配合 dtk-development 使用。"
 ---
 
 # DDE 托盘插件开发指南
@@ -19,6 +19,10 @@ DDE 托盘插件运行在任务栏托盘区域，继承 PluginsItemInterfaceV2 �
 - 使用 `Attribute_CanSetting` 时必须实现控制中心图标接口并安装对应资源；否则不要声明该属性。
 - `PluginProxyInterface` 由 loader 管理，插件只保存指针，不负责释放。快捷面板宽度由布局标志决定，控件只固定框架规定的高度。
 
+## 关联 Skill
+
+需要 DTK 框架相关知识时，使用 `$dtk-development` 获取参考文档。若该 skill 不可用，本 skill 仍可独立执行。
+
 ## 默认工作流
 
 1. 先确认目标是纯托盘、快捷面板、详情页、消息协议还是右键菜单，并核对接口和 API 版本。
@@ -36,7 +40,16 @@ DDE 托盘插件运行在任务栏托盘区域，继承 PluginsItemInterfaceV2 �
 | 开发快捷面板插件 | [references/quick-panel-guide.md](references/quick-panel-guide.md) |
 | 实现消息协议通信 | [references/message-protocol.md](references/message-protocol.md) |
 | 实现右键菜单 | [references/context-menu.md](references/context-menu.md) |
+| 常见陷阱与反模式 | [references/gotchas.md](references/gotchas.md) |
+
+## 工程模板
+
+创建新插件时可从 `assets/` 目录复制模板文件：
+
+| 模板 | 路径 |
+|------|------|
+| 插件元数据 JSON | [assets/cmake/plugin-metadata.json](assets/cmake/plugin-metadata.json) |
 
 ## Evals 测试用例
 
-验证 skill 有效性的测试用例，共 13 个，按功能模块分类组织。详见 [evals/README.md](evals/README.md)。
+验证 skill 有效性的测试用例按功能模块分类组织，详见 [evals/README.md](evals/README.md)。

@@ -189,3 +189,11 @@ done
 2. 放入对应目录，命名为 `eval-NNN-description.md`
 3. 填写任务、期望输出、验证要点
 4. 更新本 README 的列表
+
+## 触发评估
+
+`trigger-evals.json` 包含 39 条触发测试（23 正例 + 16 反例），验证 `$dtk-development` 的触发准确性。
+
+## 总计
+
+共 **81** 个 output-quality evals（含 eval-template.md），覆盖 DTK 开发的核心场景。

@@ -10,12 +10,17 @@
 - 输入框/下拉框/开关按钮
 - 列表视图/树形视图
 - 进度条/滑动条/消息提示
+- 模糊效果/毛玻璃/窗口背景
+- 容器/分组/导航/标签页
+- 工具提示/省略检测
 
 **API 接口描述：**
 - DDialog / DMainWindow / DButton
 - DLineEdit / DComboBox / DSpinBox
 - DListView / DTreeView / DStyledItemDelegate
 - DProgressBar / DSlider / DMessageManager
+- DBlurEffectWidget / DApplication / DLabel
+- DTabBar / DDrawer / DFrame / DToolTip
 
 ---
 
@@ -27,6 +32,8 @@ DTK 提供丰富的 QWidget 控件，本文档帮助您快速选择正确的控�
 
 ```
 需要什么类型的控件？
+    │
+    ├─ 应用入口 → DApplication（单实例/翻译/产品信息）
     │
     ├─ 对话框 → DDialog（简单交互）、DInputDialog（输入）、DFileDialog（文件选择）
     │
@@ -52,9 +59,19 @@ DTK 提供丰富的 QWidget 控件，本文档帮助您快速选择正确的控�
     │
     ├─ 开关 → DSwitchButton
     │
-    └─ 选择 → 下拉选择 → DComboBox
-              或 多选 → DCheckBox
-              或 单选 → DRadioButton
+    ├─ 选择 → 下拉选择 → DComboBox
+    │          或 多选 → DCheckBox
+    │          或 单选 → DRadioButton
+    │
+    ├─ 容器/分组 → DFrame（圆角边框）、DBackgroundGroup（背景分组）、DHeaderLine（标题分割线）
+    │
+    ├─ 导航 → DTabBar（标签页）、DDrawer（折叠分组）、DStackWidget（页面堆栈）
+    │
+    ├─ 标签 → DLabel（前景色主题感知/文本省略）
+    │
+    ├─ 模糊效果 → DBlurEffectWidget（毛玻璃/半透明背景）
+    │
+    └─ 工具提示 → DToolTip（条件显示/省略检测）
 ```
 
 ## API 速查表
@@ -107,14 +124,28 @@ DTK 提供丰富的 QWidget 控件，本文档帮助您快速选择正确的控�
 | `DTreeView` | `#include <DTreeView>` | 树形视图 |
 | `DStyledItemDelegate` | `#include <DStyledItemDelegate>` | 列表项委托 |
 
+### 容器与导航
+
+| 控件 | 头文件 | 用途 |
+|------|--------|------|
+| `DFrame` | `#include <DFrame>` | 圆角边框容器 |
+| `DBackgroundGroup` | `#include <DBackgroundGroup>` | 背景分组 |
+| `DHeaderLine` | `#include <DHeaderLine>` | 标题分割线 |
+| `DTabBar` | `#include <DTabBar>` | 标签页切换 |
+| `DDrawer` | `#include <DDrawer>` | 可折叠分组 |
+| `DStackWidget` | `#include <DStackWidget>` | 页面堆栈 |
+
 ### 其他
 
 | 控件 | 头文件 | 用途 |
 |------|--------|------|
 | `DProgressBar` | `#include <DProgressBar>` | 进度条 |
-| `DSlider` | `#include <DSlider>` | 滑动条 |
+| `DSlider` | `#include <DSlider>` | 滑动条（图标/刻度） |
 | `DMessageManager` | `#include <DMessageManager>` | 消息管理 |
-| `DToolTip` | `#include <DToolTip>` | 工具提示 |
+| `DToolTip` | `#include <DToolTip>` | 工具提示（条件显示/省略） |
+| `DLabel` | `#include <DLabel>` | 标签（前景色主题感知） |
+| `DBlurEffectWidget` | `#include <DBlurEffectWidget>` | 模糊效果（毛玻璃） |
+| `DPaletteHelper` | `#include <DPaletteHelper>` | 调色板助手 |
 
 ## 相关文档
 
@@ -127,4 +158,13 @@ DTK 提供丰富的 QWidget 控件，本文档帮助您快速选择正确的控�
 - [progress.md](progress.md) — 进度与状态
 - [message.md](message.md) — 消息与通知
 - [style.md](style.md) — 控件绘制机制
+- [style-impl.md](style-impl.md) — ChameleonStyle 底层绘制实现
+- [application.md](application.md) — DApplication 单实例/翻译/产品信息
+- [blur-effect.md](blur-effect.md) — DBlurEffectWidget 模糊效果
+- [container.md](container.md) — 容器与分组控件（DFrame/DBackgroundGroup/DHeaderLine）
+- [label.md](label.md) — DLabel 前景色主题感知/文本省略
+- [navigation.md](navigation.md) — 导航与布局（DTabBar/DDrawer/DStackWidget）
+- [palette-helper.md](palette-helper.md) — DPaletteHelper 调色板助手
+- [slider.md](slider.md) — DSlider 滑动条（图标/刻度）
+- [tooltip.md](tooltip.md) — DToolTip 条件显示/省略检测
 - [../theme/chameleon-widget.md](../theme/chameleon-widget.md) — QWidget Chameleon 插件、切换与调试

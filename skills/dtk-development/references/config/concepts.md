@@ -90,24 +90,7 @@ acquireManager(appId, configId, subpath)
 ## 3. meta 文件
 
 安装包携带，描述配置项元信息和默认值。JSON 格式，`magic` 为
-`"dsg.config.meta"`。
-
-```json
-{
-    "magic": "dsg.config.meta",
-    "version": "1.0",
-    "contents": {
-        "canExit": {
-            "value": true,
-            "permissions": "readwrite",
-            "visibility": "private",
-            "flags": [],
-            "name": "Can Exit",
-            "description": "Whether the application can exit"
-        }
-    }
-}
-```
+`"dsg.config.meta"`。完整模板见 [assets/config/org.example.settings.json](../../assets/config/org.example.settings.json)。
 
 ### contents 中每个配置项属性
 
@@ -136,7 +119,7 @@ dtk_add_config_meta_files(
 ## 4. override 文件
 
 可选，OEM/管理员用于覆盖 meta 文件中的 `value` 和 `permissions`。`magic` 为
-`"dsg.config.override"`。
+`"dsg.config.override"`。完整模板见 [assets/config/org.example.settings-override.json](../../assets/config/org.example.settings-override.json)。
 
 优先级从低到高：
 

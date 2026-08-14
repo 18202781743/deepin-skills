@@ -10,8 +10,22 @@ evals/
 ├── quick-panel/           # 快捷面板插件 evals
 ├── message-protocol/      # 消息协议 evals
 ├── context-menu/          # 右键菜单 evals
+├── trigger-evals.json     # 触发评估（全部）
+├── trigger-evals-train.json
+├── trigger-evals-validation.json
 └── eval-template.md       # 模板文件
 ```
+
+## 评分标准
+
+每个 eval 包含四段结构：
+
+| 节 | 说明 |
+|----|------|
+| 任务 | 具体的开发任务描述 |
+| 期望输出 | 代码应具备的特征 |
+| 验证要点 | 检查清单 |
+| 评分标准 | PASS / PARTIAL / FAIL 三级评分 + 反模式检查 |
 
 ## Evals 列表
 
@@ -48,6 +62,17 @@ evals/
 | eval-002 | checkable-menu | 可勾选菜单项 |
 | eval-003 | open-control-center | 打开控制中心 |
 
+
+### cross-skill (1 个)
+
+| 编号 | 文件 | 测试点 |
+|------|------|--------|
+| eval-001 | dtk-dependency | 使用 DTK DPalette 主题适配的跨 skill 依赖加载 |
+
+## 触发评估
+
+`trigger-evals.json` 包含 30 条触发测试（17 正例 + 13 反例），其中 1 条为跨 skill 测试（同时涉及 DConfig、Dtk6 CMake、DIconTheme 等 DTK 关键词，验证 `$dtk-development` 交叉触发）。
+
 ## 总计
 
-共 **13** 个 evals，覆盖 DDE 托盘插件开发的核心场景。
+共 **15** 个 output-quality evals（含 eval-template.md），覆盖 DDE 托盘插件开发的核心场景。

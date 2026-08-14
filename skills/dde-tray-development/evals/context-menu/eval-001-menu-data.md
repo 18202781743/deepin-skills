@@ -20,3 +20,15 @@
 - [ ] 菜单项包含 itemId、itemText、isCheckable、isActive、checked
 - [ ] invokedMenuItem(menuId, checked) 处理点击
 - [ ] 不要使用保留 ID: dock-item-id、undock-item-id
+
+## 评分标准
+
+| 等级 | 条件 |
+|------|------|
+| ✅ **PASS** | 所有验证要点全部满足，代码可编译或语法正确 |
+| ⚠️ **PARTIAL** | 核心功能满足（第 1-2 项），但边缘检查项未通过 |
+| ❌ **FAIL** | 核心功能未实现，或使用了禁止的模式
+
+## 反模式检查
+- [ ] 菜单 JSON 未包含有效的 itemKey
+- [ ] 未在 menuContent 中返回列表

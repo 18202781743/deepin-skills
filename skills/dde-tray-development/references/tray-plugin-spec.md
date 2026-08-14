@@ -314,30 +314,7 @@ Dock 框架会根据 `pluginIsDisable()` 返回值自动更新 `quickPlugins` �
 
 插件必须包含一个 JSON 元数据文件，通过 `Q_PLUGIN_METADATA(FILE "...")` 宏加载：
 
-```json
-{
-    "api": "2.0.0"
-}
-```
-
-字段说明：
-- `api`：**必填**，接口版本号，必须为 `"2.0.0"`
-
-## 10. DisplayMode 与 Position 枚举
-
-### DisplayMode
-
-| 值 | 名称 | 说明 |
-|----|------|------|
-| 0 | `Fashion` | 时尚模式 |
-| 1 | `Efficient` | 高效模式 |
-
-### Position
-
-| 值 | 名称 | 说明 |
-|----|------|------|
-| 0 | `Top` | 顶部 |
-| 1 | `Right` | 右侧 |
+完整模板见 [assets/cmake/plugin-metadata.json](../assets/cmake/plugin-metadata.json)。关键要点：`IID` 为 `"com.deepin.dock.PluginsItemInterface_V2"`，`ApiVersion` 为 `"2.0.0"`。
 | 2 | `Bottom` | 底部 |
 | 3 | `Left` | 左侧 |
 

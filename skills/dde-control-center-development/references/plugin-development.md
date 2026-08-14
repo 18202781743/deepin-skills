@@ -34,44 +34,7 @@ src/plugin-{name}/
 
 ## CMakeLists.txt 模板
 
-```cmake
-cmake_minimum_required(VERSION 3.23)
-set(PLUGIN_NAME "myplugin")
-
-find_package(Qt6 COMPONENTS Core LinguistTools REQUIRED)
-find_package(DdeControlCenter REQUIRED)
-
-# 可选额外依赖
-# find_package(Qt6 COMPONENTS DBus REQUIRED)
-# find_package(Dtk6 COMPONENTS Core Gui REQUIRED)
-
-file(GLOB_RECURSE PLUGIN_SRCS "operation/*.cpp" "operation/*.h")
-add_library(${PLUGIN_NAME} MODULE ${PLUGIN_SRCS})
-
-target_link_libraries(${PLUGIN_NAME} PRIVATE
-    Dde::Control-Center
-    Qt6::Core
-)
-# 按需添加 Qt6::DBus、Dtk6::Gui 等
-
-dcc_install_plugin(NAME ${PLUGIN_NAME} TARGET ${PLUGIN_NAME})
-dcc_handle_plugin_translation(NAME ${PLUGIN_NAME})
-```
-
-### dcc_install_plugin
-
-`dcc_install_plugin(NAME <name> TARGET <target>)`
-- `NAME` — 插件名，同时作为 QML 模块 URI
-- `TARGET` — C++ target 名（无 C++ 代码则省略）
-- 自动收集 `qml/` 下所有 `.qml`、`.js`、`.dci`、`.svg`、`.png`、`.jpg`、`.webp` 文件
-- 验证 QML 文件名首字母大写
-- 验证不允许 `main.qml`
-- 设置 `AUTOMOC_MACRO_NAMES` 为 `DCC_FACTORY_CLASS`
-
-### dcc_handle_plugin_translation
-
-`dcc_handle_plugin_translation(NAME <name>)`
-- 自动处理 20 种 locale 的 TS 文件
+完整模板见 [assets/cmake/CMakeLists.txt](../assets/cmake/CMakeLists.txt)。关键要点：`find_package(DdeControlCenter REQUIRED)`、`target_link_libraries(... Dde::Control-Center)`、`dcc_install_plugin`。
 - 在 `translations/` 目录下创建 `${name}_xx.ts` 文件
 - TS 文件通过 tx 工具推送到翻译平台进行翻译
 
@@ -91,30 +54,7 @@ dcc_install_plugin(NAME ${Plugin_Name})
 
 插件的入口 QML 文件，定义在导航中的位置。**此文件中不能使用 dccData**。
 
-```qml
-import org.deepin.dcc 1.0
-
-DccObject {
-    name: "myplugin"           // 与 CMake PLUGIN_NAME 相同
-    parentName: "root"         // 父模块 URL
-    displayName: qsTr("My Plugin")
-    icon: "myplugin_icon"
-    weight: 100
-
-    // 通过 DBus 条件控制模块显隐
-    visible: false
-    DccDBusInterface {
-        property var available
-        service: "com.example.Service"
-        path: "/com/example"
-        inter: "com.example.Service"
-        connection: DccDBusInterface.SessionBus
-        onAvailableChanged: root.visible = available > 0
-    }
-}
-```
-
-## {Name}Main.qml — 主页面
+完整模板见 [assets/qml/PluginName.qml](../assets/qml/PluginName.qml)。关键要点：`DccObject` 的 `name` 与 CMake `PLUGIN_NAME` 一致，根 QML 不能依赖 `dccData`。
 
 组合子页面。**此文件中可以使用 dccData**。
 
@@ -141,23 +81,7 @@ DccObject {
 
 ## C++ 数据模块
 
-```cpp
-// mypluginmodule.h
-#include <QObject>
-
-class MyPluginModule : public QObject {
-    Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL)
-public:
-    explicit MyPluginModule(QObject *parent = nullptr);
-    QString name() const;
-    void setName(const QString &name);
-    Q_INVOKABLE int calc(int a, int b);
-Q_SIGNALS:
-    void nameChanged(const QString &name);
-private:
-    QString m_name;
-};
+完整模板见 [assets/src/plugin.cpp](../assets/src/plugin.cpp)。关键要点：`DCC_FACTORY_CLASS` 注册，`DccObject` 设置 `displayName` 和 `description`。
 ```
 
 ```cpp
