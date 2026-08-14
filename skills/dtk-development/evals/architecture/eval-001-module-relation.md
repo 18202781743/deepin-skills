@@ -2,7 +2,7 @@
 
 ## 任务
 
-理解 DTK 四个核心模块的关系：
+面向 v25 理解 DTK 四个核心模块的关系：
 1. 解释 dtkcore/dtkgui/dtkwidget/dtkdeclarative 的职责划分
 2. 说明模块之间的依赖关系
 3. 解释 dtkgui 作为基础层如何为控件层提供抽象

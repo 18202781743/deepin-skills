@@ -14,8 +14,6 @@
 - `acquireManager` / `acquireManagerV2` — 获取配置管理器
 - `get` / `set` — 读写配置值
 
-## 2. 获取资源路径
-
 ## 1. 获取资源路径
 
 ```bash
@@ -23,13 +21,13 @@
 DCONFIG_PATH=$(dbus-send --system --type=method_call --print-reply=literal \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.acquireManager \
-    string:'<appId>' string:'<配置id>' string:'<subpath>')
+    string:'<appId>' string:'<configId>' string:'<subpath>')
 
-# acquireManagerV2: 显式指定 UID
+# introspection 确认支持时：显式指定 UID
 DCONFIG_PATH=$(dbus-send --system --type=method_call --print-reply=literal \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.acquireManagerV2 \
-    uint32:$(id -u) string:'<appId>' string:'<配置id>' string:'<subpath>')
+    uint32:$(id -u) string:'<appId>' string:'<configId>' string:'<subpath>')
 ```
 
 ## 2. 读写操作
@@ -51,7 +49,7 @@ dbus-send --system --type=method_call --print-reply \
     --dest=org.desktopspec.ConfigManager $DCONFIG_PATH \
     org.desktopspec.ConfigManager.Manager.reset string:'<key>'
 
-# 查询是否为默认值
+# introspection 确认支持时：查询是否为默认值
 dbus-send --system --type=method_call --print-reply \
     --dest=org.desktopspec.ConfigManager $DCONFIG_PATH \
     org.desktopspec.ConfigManager.Manager.isDefaultValue string:'<key>'
@@ -99,7 +97,7 @@ dbus-monitor --system "type='signal', interface='org.desktopspec.ConfigManager.M
 
 ## 5. 注意事项
 
-- `acquireManager` 返回的 DBus path 有延迟释放机制（默认 30s），多进程使用相同 appId + 配置 id 时会复用
+- `acquireManager` 返回的 DBus path 有延迟释放机制（默认 30s），多进程使用相同 appId + 配置 ID 时会复用
 - 执行第二个步骤时不应释放第一个步骤的 DBus 连接，否则 path 可能失效
 - `acquireManagerV2` 允许操作指定 uid 用户的配置
 

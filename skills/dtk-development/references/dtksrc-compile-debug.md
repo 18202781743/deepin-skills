@@ -4,7 +4,7 @@
 
 ---
 
-## 1. DTK5/DTK6 同一套代码
+## 1. v25：DTK5/DTK6 同一套代码
 
 DTK 各项目（dtkcore、dtkgui、dtkwidget、dtkdeclarative、dtklog）以及两个平台插件的 DTK5 和 DTK6 是**同一套代码**，通过 CMake option `DTK5` 切换编译目标。修改代码时需**同时保证 DTK5 和 DTK6 都能编译运行**。
 
@@ -75,7 +75,8 @@ endif()
 
 ### 1.5 DTK5 与 DTK6 API 差异
 
-DTK6 中已移除的 API（DTK5 仍可用）：`DApplicationHelper`、`DApplicationSettings`、`DThemeManager`、`DImageButton`、`DSegmentedControl`、`DToast`、`DArrowLineExpand`、`DExpandGroup`。
+不要在本文维护单个 API 或控件的 DTK5/DTK6 可用性清单。编译或迁移时检查目标
+构建环境实际发布的公共头文件和导出构建元数据，并将差异限制在最小适配点。
 
 DTK6 移除了 `gsettings-qt` 和 `libxdg` 依赖。
 
@@ -93,16 +94,19 @@ DTK 项目通过 `debian/control` 声明编译依赖，使用 `apt build-dep` �
 ### 2.1 安装编译依赖
 
 ```bash
-# 进入目标项目目录
 cd <dtk-project-path>
 
 # 自动安装 debian/control 中声明的所有编译依赖
 sudo apt build-dep .
 ```
 
-### 2.2 构建 Profile
+使用 v25 的软件源。仅 v25 的 `debian/control` 使用 `nodtk5`、`nodtk6` 标注两套
+ABI 的依赖和二进制包；选择单一 ABI 时，安装依赖和执行打包必须使用相同的
+Profile。
 
-DTK 项目通过 debian build profile 控制 DTK5/DTK6 构建：
+### 2.3 v25 构建 Profile
+
+仅 v25 的 DTK 双 ABI 打包通过 Debian Build Profile 控制 DTK5/DTK6 构建：
 
 ```bash
 # 仅编译 DTK5（跳过 DTK6 包）
@@ -117,6 +121,8 @@ dpkg-buildpackage -b -Pnodoc
 # 组合使用：仅 DTK5 + 跳过文档
 dpkg-buildpackage -b -Pnodtk6,nodoc
 ```
+sudo apt build-dep .
+```
 
 如果只是本地 cmake 编译调试，直接用 `-DDTK5=ON` 或 `-DDTK5=OFF` 即可（见第 3 节）。
 
@@ -129,6 +135,12 @@ dpkg-buildpackage -b -Pnodtk6,nodoc
 ```bash
 mkdir -p build && cd build
 
+# 只安装 DTK5 构建依赖（跳过 DTK6）
+sudo apt-get build-dep -Pnodtk6 .
+
+# 只安装 DTK6 构建依赖（跳过 DTK5）
+sudo apt-get build-dep -Pnodtk5 .
+
 # 编译 DTK5
 cmake .. -DDTK5=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr
 make -j$(nproc)
@@ -138,19 +150,23 @@ cmake .. -DDTK5=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr
 make -j$(nproc)
 ```
 
-### 3.2 编译选项
+命令行中的 `-DDTK5=...` 表示给 CMake 变量 `DTK5` 赋值。该 option 只存在于
+v25 的双 ABI 工程：`ON` 构建 Qt5/DTK5，`OFF` 构建 Qt6/DTK6。
+
+### 3.4 v25 编译选项
 
 | 选项 | 说明 |
 |------|------|
-| `-DDTK5=ON` / `-DDTK5=OFF` | 切换 DTK5/DTK6 编译目标 |
+| `-DDTK5=ON` / `-DDTK5=OFF` | 仅 v25：切换 DTK5/DTK6 编译目标 |
 | `-DCMAKE_BUILD_TYPE=Debug` | Debug 构建，带调试符号，使用 `-O0 -g -fno-omit-frame-pointer` |
 | `-DCMAKE_BUILD_TYPE=Release` | Release 构建，DTK 使用 `-Ofast` 替代 `-O3` |
 | `-DCMAKE_INSTALL_PREFIX=/usr` | 安装路径，DTK 项目编译时建议指定 |
 | `-DENABLE_TESTING=ON` | 启用单元测试编译 |
 
-### 3.3 平台插件
+### 3.5 v25 平台插件
 
-两个平台插件建议直接安装到系统中测试：
+`dde-qtintegration` 和 `dde-qtplatform-plugins` 使用 v25 双 ABI 构建规则。确需
+安装到系统中测试时：
 
 ```bash
 cmake .. -DDTK5=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr

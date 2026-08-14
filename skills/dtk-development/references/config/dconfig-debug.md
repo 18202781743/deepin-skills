@@ -23,20 +23,20 @@ sudo systemctl restart dde-dconfig-daemon.service
 # 查看日志
 sudo journalctl -u dde-dconfig-daemon.service -f -b
 
-# 开启详细日志
+# introspection 确认接口支持后，开启详细日志
 dbus-send --system --type=method_call --print-reply=literal \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.enableVerboseLogging
 
-# 关闭详细日志
+# introspection 确认接口支持后关闭详细日志
 dbus-send --system --type=method_call --print-reply=literal \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.disableVerboseLogging
 
-# 手动指定用户重启
+# v25：确认任务允许影响系统服务后，手动指定用户重启
 sudo pkill dde-dconfig-dae && sudo -u deepin-daemon dde-dconfig-daemon
 
-# 启动前通过环境变量设置日志
+# v25：启动前通过环境变量设置日志
 sudo -u deepin-daemon QT_LOGGING_RULES="*dsg.config.debug=true" dde-dconfig-daemon
 ```
 
@@ -62,7 +62,7 @@ dbus-send --system --type=method_call --print-reply \
 dbus-send --system --type=method_call --print-reply \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.update \
-    string:'/usr/share/dsg/configs/<appId>/<配置id>.json'
+    string:'/usr/share/dsg/configs/<appId>/<configId>.json'
 ```
 
 ### 2.3 同步缓存
@@ -71,35 +71,35 @@ dbus-send --system --type=method_call --print-reply \
 dbus-send --system --type=method_call --print-reply \
     --dest=org.desktopspec.ConfigManager / \
     org.desktopspec.ConfigManager.sync \
-    string:'/usr/share/dsg/configs/<appId>/<配置id>.json'
+    string:'/usr/share/dsg/configs/<appId>/<configId>.json'
 ```
 
 ## 3. 命令行工具
 
 ```bash
 # 查看应用所有配置
-dde-dconfig list -a <appid>
+dde-dconfig list -a <appId>
 
 # 列出应用下所有配置子路径
-dde-dconfig list -a <appid> -s <subpath>
+dde-dconfig list -a <appId> -s <subpath>
 
 # 获取配置项
-dde-dconfig get -a <appid> -r <配置id> -s <subpath> -k <key>
+dde-dconfig get -a <appId> -r <configId> -s <subpath> -k <key>
 
 # 设置配置项
-dde-dconfig set -a <appid> -r <配置id> -s <subpath> -k <key> -v <value>
+dde-dconfig set -a <appId> -r <configId> -s <subpath> -k <key> -v <value>
 
 # 重置配置项
-dde-dconfig reset -a <appid> -r <配置id> -s <subpath> -k <key>
+dde-dconfig reset -a <appId> -r <configId> -s <subpath> -k <key>
 
 # 监听配置变化
-dde-dconfig watch -a <appid> -r <配置id> -s <subpath> -k <key>
+dde-dconfig watch -a <appId> -r <configId> -s <subpath> -k <key>
 
-# 指定用户操作
-dde-dconfig get -u <uid> -a <appid> -r <配置id> -k <key>
+# dde-dconfig --help 确认 CLI 支持时：指定用户操作
+dde-dconfig get -u <uid> -a <appId> -r <configId> -k <key>
 
-# 查询元信息（name/description/visibility/permissions/version/isDefaultValue）
-dde-dconfig get -a <appid> -r <配置id> -k <key> -m isDefaultValue
+# dde-dconfig --help 确认 CLI 支持时：查询元信息
+dde-dconfig get -a <appId> -r <configId> -k <key> -m isDefaultValue
 
 # 启动 GUI 编辑器
 dde-dconfig gui
@@ -116,9 +116,9 @@ GUI 编辑器 `dde-dconfig-editor` 需单独安装：`sudo apt install dde-dconf
 | 类型 | 路径 |
 |------|------|
 | 根路径 | `$STATE_DIRECTORY/.config`（systemd 下为 `/var/lib/dde-dconfig-daemon/.config`） |
-| 用户缓存 | `{根路径}/{uid}/{appId}/{name}.json` |
-| global 缓存 | `{根路径}/global/{appId}/{name}.json` |
-| global 降级（全局目录不可写时） | `{根路径}/{appId}-fake-global/{name}.json` |
+| 用户缓存 | `{根路径}/{uid}/{appId}/{configId}.json` |
+| global 缓存 | `{根路径}/global/{appId}/{configId}.json` |
+| global 降级（全局目录不可写时） | `{根路径}/{appId}-fake-global/{configId}.json` |
 
 ### 4.2 路径变更历史
 
@@ -126,7 +126,7 @@ GUI 编辑器 `dde-dconfig-editor` 需单独安装：`sudo apt install dde-dconf
 |------|---------|------------|
 | 早期（daemon 未显式设置前缀） | `~/.config/dsg/configs/{appId}/` | `/deepin/appdata/{appId}/configs/` |
 | 过渡期 | `~/.config/dsg/configs/{appId}/` | `/var/dsg/appdata/configs/{appId}/` |
-| 当前（daemon 显式设置前缀） | `{根路径}/{uid}/{appId}/{name}.json` | `{根路径}/global/{appId}/{name}.json` |
+| 当前（daemon 显式设置前缀） | `{根路径}/{uid}/{appId}/{configId}.json` | `{根路径}/global/{appId}/{configId}.json` |
 
 > **注意**：版本升级时缓存路径变化可能导致已有缓存失效，配置值回退为 meta 默认值。
 

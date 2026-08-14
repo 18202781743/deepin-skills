@@ -60,7 +60,8 @@ QIcon icon = DIconTheme::findQIcon("document-open",
 
 **⚠️ 参数顺序差异**
 
-顶层 API `DIconTheme::findQIcon()` 与 `DIconTheme::Cached::findQIcon()` 参数顺序不同：
+顶层 API `DIconTheme::findQIcon()` 与 `DIconTheme::Cached::findQIcon()` 参数顺序不同；
+具体顶层 fallback 重载以目标头文件为准：
 
 ```cpp
 // 顶层 API（无缓存）：iconName, fallback, options

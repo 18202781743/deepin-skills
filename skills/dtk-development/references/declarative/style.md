@@ -23,4 +23,7 @@ dtkdeclarative 中存在两套职责不同的样式机制：
 
 前者决定"标准控件由哪套 QML 实现"，后者决定 DTK 控件实现使用哪些设计参数。它们可以同时工作，但不是同一个插件。
 
+Qt Quick Controls 2 Chameleon 的启用、插件加载和对比调试见
+[QML Chameleon](../theme/chameleon-qml.md)。
+
 ## 3. URI 和注册过程

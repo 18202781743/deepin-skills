@@ -8,7 +8,7 @@
 
 ### 1.1 标准 CMakeLists.txt 模板
 
-#### DTK6（推荐）
+#### DTK6（v25 推荐）
 
 ```cmake
 cmake_minimum_required(VERSION 3.13)
@@ -39,7 +39,7 @@ target_link_libraries(myapp PRIVATE
 )
 ```
 
-### 1.2 兼容 DTK5 和 DTK6
+### 1.2 v25 兼容 DTK5 和 DTK6
 
 ```cmake
 cmake_minimum_required(VERSION 3.13)
@@ -89,7 +89,7 @@ target_link_libraries(myapp PRIVATE
 find_package(Dtk6 REQUIRED COMPONENTS Core Gui Widget)
 ```
 
-### 1.3 CMake 编译依赖（模块级）
+### 1.4 CMake 编译依赖（模块级）
 
 | 使用场景 | CMake 依赖 |
 |----------|------------|
@@ -98,7 +98,7 @@ find_package(Dtk6 REQUIRED COMPONENTS Core Gui Widget)
 | QWidget 控件 (DDialog/DMainWindow) | `Dtk6::Widget` |
 | 配置系统 (DConfig/DSettings) | `Dtk6::Core` |
 | 日志系统 (Logger) | `Dtk6::Log` |
-| QML 控件 | `Dtk6::Declarative` |
+| v25 QML 控件 | `Dtk6::Declarative` |
 | 文件操作/DBus/DNotify | `Dtk6::Core` |
 
 ---
@@ -136,8 +136,6 @@ DTK 的公共头文件使用无 `.h` 后缀的转发头，与 CMake target 对�
 - `applicationName` 通常与可执行文件名一致；不要把显示名称、应用 ID 和单实例 key 混为一个值。
 - `DApplication::loadTranslator()` 必须在创建窗口、菜单和其他可翻译对象前调用。
 - 翻译文件 basename 应与 `applicationName` 一致；专业单位如 `px` 使用 `QStringLiteral("px")`，不要放入 `tr()`。
-- DConfig 优先使用通过 `DSGApplication::id()` 获取的默认 appId。只有默认 appId 无法满足需求时，才使用 `DConfig::create()` 显式指定。
-- 不使用 `QSettings` 或手动拼接 DTK 管理的配置存储路径替代 DConfig。
 
 ### 2.3 日志规范
 
@@ -273,7 +271,7 @@ Depends:
  ${shlibs:Depends},
 ```
 
-如果使用 dtkdeclarative QML：
+如果在 v25 使用 dtkdeclarative QML：
 
 ```control
 Build-Depends:

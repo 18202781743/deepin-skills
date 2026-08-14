@@ -153,7 +153,7 @@ Text {
     ├─ QWidget 应用？
     │   └─ 使用 DFontSizeManager::bind() 自动跟随系统
     │
-    ├─ QML 应用？
+    ├─ v25 DTK QML 应用？
     │   └─ 使用 D.DTK.fontManager.tN
     │
     ├─ 需要自定义基准字体？

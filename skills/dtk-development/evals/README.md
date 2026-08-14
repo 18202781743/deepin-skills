@@ -9,9 +9,9 @@ Evals 按 skill 的 references 目录分类组织：
 ```
 evals/
 ├── widgets/           # QWidget 控件测试 (W-001 ~ W-030)
-├── declarative/       # QML 控件测试 (Q-001 ~ Q-012)
+├── declarative/       # 仅 v25 DTK QML 控件测试 (Q-001 ~ Q-012)
 ├── theme/             # 主题系统测试 (T-001 ~ T-008)
-├── config/            # DConfig 配置测试 (C-001 ~ C-004)
+├── config/            # DConfig 配置测试 (C-001 ~ C-005)
 ├── utilities/         # 工具类测试 (U-001 ~ U-006)
 ├── debugging/         # 调试场景测试 (D-001 ~ D-005)
 ├── custom-controls/   # 自定义控件测试 (X-001 ~ X-006)
@@ -95,6 +95,7 @@ evals/
 | C-002 | DConfig 元数据配置 | [config/eval-002-dconfig-meta.md](config/eval-002-dconfig-meta.md) |
 | C-003 | DConfig 覆盖机制 | [config/eval-003-dconfig-override.md](config/eval-003-dconfig-override.md) |
 | C-004 | DConfig 调试 | [config/eval-004-dconfig-debug.md](config/eval-004-dconfig-debug.md) |
+| C-005 | 区分 appId 与配置 ID | [config/eval-005-dconfig-identifiers.md](config/eval-005-dconfig-identifiers.md) |
 
 ### utilities/ - 工具类
 

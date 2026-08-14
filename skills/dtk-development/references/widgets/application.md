@@ -43,7 +43,10 @@ int main(int argc, char *argv[]) {
 
 ## 3. 单实例控制
 
-可执行文件名、`applicationName`、应用 ID 和单实例 key 是不同概念。通常将 `applicationName` 设置为可执行文件名，将稳定且唯一的应用 ID 用作单实例 key。DConfig 默认通过 `DSGApplication::id()` 获取 appId，只有默认值无法满足需求时才显式指定其他 appId。
+可执行文件名、`applicationName`、应用 ID 和单实例 key 是不同概念。通常将
+`applicationName` 设置为可执行文件名，将稳定且唯一的应用 ID 用作单实例
+key。如同时使用 DConfig，其标识与创建规则见
+[DConfig 使用入口](../config/index.md)。
 
 ```cpp
 DApplication a(argc, argv);

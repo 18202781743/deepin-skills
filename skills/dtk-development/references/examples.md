@@ -81,5 +81,4 @@ dtk-exhibition                        # DTK5
 ## 相关文档
 
 - [widgets/index.md](widgets/index.md) — QWidget 控件文档
-- [declarative/index.md](declarative/index.md) — QML 控件文档
-
+- [declarative/index.md](declarative/index.md) — v25 DTK QML 控件文档

@@ -1,23 +1,8 @@
 # DConfig C++ 使用
 
-## 1. 概述与适用场景
+## 1. 直接使用 DConfig
 
-DConfig 是 DTK 提供的跨进程配置管理方案，支持应用配置的持久化存储、跨应用共享和 OEM 覆盖。
-
-**适用场景：**
-- 应用需要持久化配置
-- 多个应用需要共享配置
-- 需要区分用户配置或系统级配置
-- OEM 需要预置默认配置
-
-**相关接口：**
-- `DConfig` — C++ 配置读写类
-- `DConfig::create()` — 创建配置实例
-- `DConfig::value()` / `setValue()` — 读写配置值
-
-## 2. 直接使用 DConfig
-
-### 2.1 头文件与 CMake
+### 1.1 头文件与 CMake
 
 ```cpp
 #include <DConfig>
@@ -27,10 +12,14 @@ find_package(Dtk6Core REQUIRED)
 target_link_libraries(your_target Dtk6::Core)
 ```
 
-### 2.2 基本用法
+### 1.2 基本用法
+
+使用入口阶段已经固定的 `configId` 创建对象；默认 appId 由
+`DSGApplication::id()` 获取，工程也可以通过 `DSG_APP_ID` 声明 appId。
 
 ```cpp
-auto *config = new DConfig("example", "", this);
+const QString configId = QStringLiteral("org.deepin.example.settings");
+auto *config = new DConfig(configId, QString(), this);
 if (!config->isValid()) {
     qWarning() << "DConfig is unavailable; using application defaults";
     // 保留默认值，应用仍应能够启动。
@@ -60,10 +49,10 @@ if (config->isValid()) {
 }
 ```
 
-### 2.3 创建方式
+### 1.3 创建方式
 
 ```cpp
-// 默认：使用 DSGApplication::id() 获取 appId
+// 默认：使用 DSGApplication::id() 获取 appId；工程可通过 DSG_APP_ID 声明
 explicit DConfig(const QString &name, const QString &subpath = QString(),
                  QObject *parent = nullptr);
 
@@ -82,11 +71,12 @@ static void setAppId(const QString &appId);
 static QThread *globalThread();
 ```
 
-> **注意**：不指定 appId 时，DConfig 会通过 `DSGApplication::id()` 获取默认 appId。如果默认 appId 无法满足需求，再使用 `create()` 显式指定。
+> **注意**：默认 appId 无法满足需求时，才使用 `create()` 传入入口阶段固定的
+> `appId` 和 `configId`。
 
 应用不应自行拼接配置目录或使用 `QSettings` 替代 DConfig 的持久化职责。配置元数据不可用时使用代码中的 fallback，并通过日志记录一次原因；不要因为配置服务不可用而阻塞主窗口创建。
 
-### 2.4 实例方法
+### 1.4 实例方法
 
 ```cpp
 // 读写
@@ -107,19 +97,19 @@ QString subpath() const;
 void reset(const QString &key);
 ```
 
-### 2.5 信号
+### 1.5 信号
 
 ```cpp
 Q_SIGNALS:
     void valueChanged(const QString &key);
 ```
 
-### 2.6 带 subpath 使用
+### 1.6 带 subpath 使用
 
 ```cpp
 // subpath 用于配置分层，格式以 / 开头
-auto *configV1 = new DConfig("settings", "", this);
-auto *configV2 = new DConfig("settings", "/v2", this);
+auto *configV1 = new DConfig("org.deepin.example.settings", QString(), this);
+auto *configV2 = new DConfig("org.deepin.example.settings", "/v2", this);
 ```
 
 ## 2. dconfig2cpp：JSON 生成类型安全的 C++ 类
@@ -127,7 +117,9 @@ auto *configV2 = new DConfig("settings", "/v2", this);
 ### 2.1 工具用法
 
 ```bash
-dconfig2cpp -c MyConfig -o my_config.hpp configs/example.json
+dconfig2cpp -c ExampleConfig \
+    -o example_config.hpp \
+    configs/org.deepin.example.settings.json
 ```
 
 选项：
@@ -150,27 +142,27 @@ dconfig2cpp -c MyConfig -o my_config.hpp configs/example.json
 ### 2.3 使用生成类
 
 ```cpp
-#include "my_config.hpp"
+#include "example_config.hpp"
 
 class MyWindow : public QWidget {
-    MyConfig *m_cfg;
+    ExampleConfig *m_cfg;
     void initConfig() {
-        // 创建（异步初始化）
-        m_cfg = MyConfig::create("org.deepin.myapp");
+        // 参数是 appId；配置 ID 已由生成类对应的 meta 文件确定。
+        m_cfg = ExampleConfig::create("org.deepin.example");
 
         // 连接初始化信号，receiver 为 m_cfg 自身
-        connect(m_cfg, &MyConfig::configInitializeSucceed, m_cfg, [this]() {
+        connect(m_cfg, &ExampleConfig::configInitializeSucceed, m_cfg, [this]() {
             qInfo() << "Config ready, canExit:" << m_cfg->canExit();
         });
-        connect(m_cfg, &MyConfig::configInitializeFailed, m_cfg, [this]() {
+        connect(m_cfg, &ExampleConfig::configInitializeFailed, m_cfg, [this]() {
             qWarning() << "Config init failed";
         });
 
         // 监听属性变化
-        connect(m_cfg, &MyConfig::canExitChanged, m_cfg, [this]() {
+        connect(m_cfg, &ExampleConfig::canExitChanged, m_cfg, [this]() {
             qInfo() << "canExit changed:" << m_cfg->canExit();
         });
-        connect(m_cfg, &MyConfig::valueChanged, m_cfg,
+        connect(m_cfg, &ExampleConfig::valueChanged, m_cfg,
                 [this](const QString &key, const QVariant &value) {
             qInfo() << key << "->" << value;
         });
@@ -200,9 +192,9 @@ class MyWindow : public QWidget {
 find_package(Dtk6Core REQUIRED)
 
 dtk_add_config_to_cpp(GENERATED_SOURCES
-    ${CMAKE_SOURCE_DIR}/configs/example.json
-    CLASS_NAME MyConfig
-    OUTPUT_FILE_NAME my_config.hpp)
+    ${CMAKE_SOURCE_DIR}/configs/org.deepin.example.settings.json
+    CLASS_NAME ExampleConfig
+    OUTPUT_FILE_NAME example_config.hpp)
 ```
 
 ### 2.5 生成类状态机

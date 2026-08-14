@@ -209,7 +209,7 @@ DPlatformTheme(window)
 |----|------|------|------|
 | `DXCBPlatformWindowInterface` | dtkgui | `src/plugins/platform/xcb/dxcbplatformwindowinterface.h` | X11 窗口操作（圆角、阴影、模糊、无标题栏） |
 | `DXCBPlatformInterface` | dtkgui | `src/plugins/platform/xcb/dxcbplatforminterface.h` | X11 主题配置（通过 XSettings 原子） |
-| `DNoTitlebarWindowHelper` | dde-qtplatform-plugins | `xcb/dnotitlebarwindowhelper.h` | 无标题栏窗口拖拽移动实现 |
+| `DNoTitlebarWindowHelper` | `dde-qtplatform-plugins` | `xcb/dnotitlebarwindowhelper.h` | 无标题栏窗口拖拽移动实现 |
 
 通过 X11 原子协议（`_DEEPIN_SCISSOR_WINDOW` 等）与合成器通信。
 
@@ -230,7 +230,7 @@ DPlatformTheme(window)
 
 **窗口拖拽：** Treeland 下由 `dtkgui` 中的 `MoveWindowHelper` 实现。它同样通过 `DVtableHook` 钩入 `QWindow::event`，拦截鼠标事件后调用 `QPlatformWindow::startSystemMove()` 由合成器接管窗口移动。
 
-### 5.3 QPA 层（dde-qtplatform-plugins）
+### 5.3 QPA 层（`dde-qtplatform-plugins`）
 
 | 类 | 源码路径 | 说明 |
 |----|----------|------|

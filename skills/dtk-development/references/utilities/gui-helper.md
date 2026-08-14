@@ -16,7 +16,7 @@
 ```
 DGuiApplicationHelper (dtkgui, C++ 单例)
     │
-    ├─ DApplicationHelper (dtkgui, QML 单例, 同一对象)
+    ├─ DApplicationHelper (v25 QML 单例)
     │   └─ QML: ApplicationHelper.LightType / DarkType
     │
     └─ DTK (dtkdeclarative, QML 全局对象)

@@ -4,7 +4,7 @@
 
 DTK QWidget 控件外观由两层组成：
 - `DStyle`（dtkwidget）：DTK 扩展风格类，定义图元、像素度量、状态画刷
-- `ChameleonStyle`（dde-qtintegration）：实际绘制实现
+- `ChameleonStyle`（`dde-qtintegration`）：实际绘制实现
 
 **适用场景**：自定义控件时复用 DTK 风格元素
 
@@ -108,4 +108,4 @@ int focusWidth = DStyle::pixelMetric(style(), DStyle::PM_FocusBorderWidth);
 ## 相关文档
 
 - [palette.md](../theme/palette.md) — DPalette 语义色
-- [chameleon-style.md](../theme/chameleon-style.md) — 风格插件架构
+- [chameleon-widget.md](../theme/chameleon-widget.md) — QWidget Chameleon 插件、切换与调试

@@ -127,3 +127,4 @@ DTK 提供丰富的 QWidget 控件，本文档帮助您快速选择正确的控�
 - [progress.md](progress.md) — 进度与状态
 - [message.md](message.md) — 消息与通知
 - [style.md](style.md) — 控件绘制机制
+- [../theme/chameleon-widget.md](../theme/chameleon-widget.md) — QWidget Chameleon 插件、切换与调试

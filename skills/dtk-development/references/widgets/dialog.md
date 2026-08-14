@@ -254,15 +254,10 @@ dialog->exec();
 
 ## 8. 常见错误与避坑
 
-### 错误 1：使用废弃的 setIconPixmap
+### 错误 1：照抄与目标发布头文件不一致的旧调用
 
 ```cpp
-// ❌ 错误：setIconPixmap 已废弃（DTK6 中已移除）
-dialog->setIconPixmap(pixmap);
-// ❌ 错误：setIcon(QIcon, QSize) 已废弃
-dialog->setIcon(icon, expectedSize);
-
-// ✅ 正确：使用 setIcon(QIcon)
+// 使用目标环境公共头文件声明的重载
 dialog->setIcon(QIcon(pixmap));
 // 或直接使用 DIconTheme 查找图标
 dialog->setIcon(DIconTheme::findQIcon("icon_warning"));

@@ -26,6 +26,11 @@ DTK 主题系统涵盖视觉表现的各个方面：
 - **字体**：`DFontManager` T1-T11 层级字体体系
 - **控件风格**：`DStyle` / `DStyleHelper` 控件渲染与状态颜色
 
+## 模块约束
+
+- DCI 和 DTK builtin 图标默认通过基础名称查找，不在业务代码中展开资源
+  绝对路径，也不要为普通图标修改进程级搜索目录。
+
 ## 快速路由
 
 | 场景 | 参考文档 |
@@ -34,8 +39,9 @@ DTK 主题系统涵盖视觉表现的各个方面：
 | builtin 图标列表与用法 | [builtin.md](builtin.md) |
 | icon theme 图标（XDG） | [icontheme.md](icontheme.md) |
 | 调色板（DPalette） | [palette.md](palette.md) |
-| 控件风格 API 与定制 | [Widget 控件风格](../widgets/style.md) |
-| Chameleon 风格概览 | [chameleon-style.md](chameleon-style.md) |
+| QWidget 控件绘制 API 与定制 | [Widget 控件风格](../widgets/style.md) |
+| QWidget Chameleon 插件与调试 | [chameleon-widget.md](chameleon-widget.md) |
+| v25 DTK QML Chameleon 插件与调试 | [chameleon-qml.md](chameleon-qml.md) |
 | 监听亮暗主题切换 | [theme-switch.md](theme-switch.md) |
 
 ## 相关文档

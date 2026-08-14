@@ -26,6 +26,9 @@ dtkdeclarative 对 Qt Quick Controls 进行 DTK 主题封装并提供自定义�
 ## 快速决策树
 
 ```
+本文控件集只以 v25 的 dtkdeclarative 为基线。先确认目标工程使用 DTK5/Qt5
+还是 DTK6/Qt6，再核对 QML module、import 版本和实际类型。
+
 需要什么类型的 QML 控件？
     │
     ├─ 窗口 → ApplicationWindow / DialogWindow
@@ -67,7 +70,8 @@ dtkdeclarative 对 Qt Quick Controls 进行 DTK 主题封装并提供自定义�
 
 ## 相关文档
 
-- [style.md](style.md) — Style 单例与默认实现
+- [../theme/chameleon-qml.md](../theme/chameleon-qml.md) — Qt Quick Controls 2 Chameleon 插件、切换与调试
+- [style.md](style.md) — Style 单例与应用级样式覆盖
 - [dci-icon.md](dci-icon.md) — QML 中使用 dci 图标
 - [effects.md](effects.md) — QML 视觉效果
 - [dtk-global.md](dtk-global.md) — D.DTK 全局对象

@@ -1,5 +1,8 @@
 # dci 图标规范
 
+始终确认实际 DCI 资源随应用或系统安装。资源不可用时沿用目标项目已有的 XDG
+主题图标、PNG 或 SVG，不虚构图标名称。
+
 ## 1. 概述与适用场景
 
 **dci** (Deepin Component Icon) 是 DTK 自有的矢量图标格式，基于 `DDciFile` 封装，支持：

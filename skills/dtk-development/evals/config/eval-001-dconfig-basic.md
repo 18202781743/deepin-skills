@@ -18,6 +18,7 @@
 
 - [ ] #include <DConfig>
 - [ ] 优先使用 `DConfig` 构造函数和 `DSGApplication::id()` 默认 appId
+- [ ] 知道工程可通过 `DSG_APP_ID` 声明 appId，并保持应用身份一致
 - [ ] 使用 value(key, fallback) 读取
 - [ ] 使用 setValue(key, value) 写入
 - [ ] 只有默认 appId 无法满足需求时才使用 `DConfig::create(appId, ...)`
