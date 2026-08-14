@@ -104,13 +104,6 @@ PluginBegin
 | `hideModule` | `string[]` | 隐藏的模块名列表 |
 | `disableModule` | `string[]` | 禁用的模块名列表 |
 
-```bash
-# 查看/设置
-dde-dconfig get org.deepin.dde.control-center -r org.deepin.dde.control-center hideModule
-dde-dconfig set org.deepin.dde.control-center org.deepin.dde.control-center hideModule '["display"]'
-dde-dconfig reset org.deepin.dde.control-center org.deepin.dde.control-center hideModule
-```
-
 插件加载前检查模块名是否在 `hideModule` 中，若在则跳过加载。DccObject 的只读属性 `visibleToApp` 和 `enabledToApp` 反映了结合配置后的最终状态。
 
 ## DBus 接口

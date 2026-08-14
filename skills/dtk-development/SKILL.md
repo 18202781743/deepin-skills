@@ -1,6 +1,6 @@
 ---
 name: dtk-development
-description: "用于 deepin/UOS v25 的 DTK（deepin Tool Kit）桌面应用开发维护，同时支持 DTK5 和 DTK6。当用户需要创建或修改 DTK QWidget/QML 应用，选择控件，实现主题、调色板、DCI 图标、DConfig、D-Bus、通知、单实例、窗口效果、平台适配，或编译调试 DTK 源码时使用。"
+description: "用于 deepin/UOS v25 的 DTK（deepin Tool Kit）桌面应用及插件开发维护，同时支持 DTK5 和 DTK6。当用户需要创建 deepin/UOS 桌面应用或插件、选用 QWidget 控件或 QML 控件、实现主题与调色板、使用 DCI 图标或主题图标、管理 DConfig 配置与持久化配置、发送系统通知或应用通知、调用 D-Bus、实现单实例、处理窗口效果、平台适配，或编译调试 DTK 源码时使用。"
 ---
 
 # DTK 开发指南
@@ -33,6 +33,7 @@ DTK 是深度桌面环境的核心开发框架，覆盖应用界面与交互、�
 | 了解 DTK 架构、项目关系或定位跨应用共性问题 | [architecture.md](references/architecture.md) |
 | 创建 DTK 应用、配置 CMake、应用身份、翻译、日志和依赖 | [app-dev-with-dtk.md](references/app-dev-with-dtk.md) |
 | 修改、编译和调试 DTK 源码 | [dtksrc-compile-debug.md](references/dtksrc-compile-debug.md) |
+| 排查常见错误、反模式和行为异常 | [gotchas.md](references/gotchas.md) |
 | 选择和使用 QWidget 控件 | [widgets/index.md](references/widgets/index.md) |
 | 使用或调试 QWidget Chameleon | [theme/chameleon-widget.md](references/theme/chameleon-widget.md) |
 | v25 选择和使用 DTK QML 控件 | [declarative/index.md](references/declarative/index.md) |
@@ -57,9 +58,26 @@ DTK 是深度桌面环境的核心开发框架，覆盖应用界面与交互、�
 - **DStyledItemDelegate 列表项** → [widgets/item-delegate.md](references/widgets/item-delegate.md)
 - **DProgressBar 进度条** → [widgets/progress.md](references/widgets/progress.md)
 - **DInputDialog 输入对话框** → [widgets/dialog.md](references/widgets/dialog.md)
+- **排查主题不生效/QSS 冲突** → [gotchas.md](references/gotchas.md) 第 2 节
+- **DConfig 配置读不到** → [gotchas.md](references/gotchas.md) 第 4 节
+- **图标查找失败** → [gotchas.md](references/gotchas.md) 第 3 节
 
-创建或维护 DTK 应用时，按任务加载上表对应的模块入口，并以模块 index 中的约束为准。
+创建或维护 DTK 应用时，按任务加载上表对应的模块入口，并以模块 index 中的约束为准。遇到异常行为或不确定最佳实践时，优先查阅 [gotchas.md](references/gotchas.md)。
+
+## 工程模板
+
+创建新项目时可从 `assets/` 目录复制模板文件：
+
+| 模板 | 路径 |
+|------|------|
+| CMakeLists.txt（DTK6） | [assets/cmake/CMakeLists-DTK6.txt](assets/cmake/CMakeLists-DTK6.txt) |
+| CMakeLists.txt（DTK5+DTK6 兼容） | [assets/cmake/CMakeLists-DTK5-DTK6-compat.txt](assets/cmake/CMakeLists-DTK5-DTK6-compat.txt) |
+| main.cpp（QWidget 应用） | [assets/src/main.cpp](assets/src/main.cpp) |
+| main.cpp（日志应用） | [assets/src/main-log.cpp](assets/src/main-log.cpp) |
+| .desktop 文件 | [assets/desktop/myapp.desktop](assets/desktop/myapp.desktop) |
+| DConfig meta 模板 | [assets/config/org.example.settings.json](assets/config/org.example.settings.json) |
+| DConfig override 模板 | [assets/config/org.example.settings-override.json](assets/config/org.example.settings-override.json) |
 
 ## Evals 测试用例
 
-验证 skill 有效性的测试用例按功能模块分类组织。详见 [evals/README.md](evals/README.md)。
+验证 skill 有效性的测试用例按功能模块分类组织。每个 eval 包含评分标准（PASS/PARTIAL/FAIL）和反模式检查。详见 [evals/README.md](evals/README.md)。

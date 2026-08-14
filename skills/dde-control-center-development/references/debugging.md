@@ -96,10 +96,7 @@ MyModule::MyModule(QObject *parent) : QObject(parent) {
 
 ### 插件不显示
 
-1. 检查 hideModule：
-   ```bash
-   dde-dconfig get org.deepin.dde.control-center -r org.deepin.dde.control-center hideModule
-   ```
+1. 检查 hideModule 配置
 2. 检查 `{Name}.qml` 中 `visible` 是否为 `false`
 3. 检查 DBus 条件是否满足
 4. 检查插件目录结构：`ls plugins_v1.1/myplugin/`
@@ -151,8 +148,6 @@ strings /path/to/myplugin.so | grep DccFactory
 # 验证安装路径
 ls /usr/lib/x86_64-linux-gnu/dde-control-center/plugins_v1.1/myplugin/
 
-# 重启 DConfig daemon
-systemctl --user restart dde-dconfig-daemon.service
 ```
 
 ## 完整检查清单

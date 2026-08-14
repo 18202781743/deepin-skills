@@ -37,6 +37,17 @@ dde-shell 是 DDE 桌面环境的 Shell 核心，负责 Dock、顶栏、侧栏�
 | 开发 Applet/Containment/Panel 插件 | [plugin-development.md](references/plugin-development.md) |
 | 使用 LayerShell 锚定窗口 | [layershell.md](references/layershell.md) |
 | 查找 C++ 和 QML API | [api/index.md](references/api/index.md) |
+| 常见陷阱与反模式 | [references/gotchas.md](references/gotchas.md) |
+
+## 工程模板
+
+创建新插件时可从 `assets/` 目录复制模板文件：
+
+| 模板 | 路径 |
+|------|------|
+| CMakeLists.txt | [assets/cmake/CMakeLists.txt](assets/cmake/CMakeLists.txt) |
+| 插件元数据 JSON | [assets/qml/metadata.json](assets/qml/metadata.json) |
+| 最小 Applet QML | [assets/qml/Package.qml](assets/qml/Package.qml) |
 
 ## Evals 测试用例
 

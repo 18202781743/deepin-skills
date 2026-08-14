@@ -10,75 +10,19 @@
 
 #### DTK6（v25 推荐）
 
-```cmake
-cmake_minimum_required(VERSION 3.13)
-project(myapp VERSION 1.0.0 LANGUAGES CXX)
+完整模板见 [assets/cmake/CMakeLists-DTK6.txt](../assets/cmake/CMakeLists-DTK6.txt)。关键要点：
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
-find_package(Dtk6Core REQUIRED)
-find_package(Dtk6Gui REQUIRED)
-find_package(Dtk6Widget REQUIRED)
-
-add_executable(myapp
-    main.cpp
-    mainwindow.cpp
-)
-
-target_link_libraries(myapp PRIVATE
-    Qt6::Core
-    Qt6::Widgets
-    Dtk6::Core
-    Dtk6::Gui
-    Dtk6::Widget
-)
-```
+- `find_package(Dtk6Core REQUIRED)` / `Dtk6Gui` / `Dtk6Widget` 按需引入
+- 链接 `Dtk6::Core` / `Dtk6::Gui` / `Dtk6::Widget`
+- `CMAKE_AUTOMOC ON` / `CMAKE_AUTORCC ON` 必须开启
 
 ### 1.2 v25 兼容 DTK5 和 DTK6
 
-```cmake
-cmake_minimum_required(VERSION 3.13)
-project(myapp VERSION 1.0.0 LANGUAGES CXX)
+完整模板见 [assets/cmake/CMakeLists-DTK5-DTK6-compat.txt](../assets/cmake/CMakeLists-DTK5-DTK6-compat.txt)。关键机制：
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# 自动检测 Qt 版本
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets)
-
-# 根据 Qt 版本决定 DTK 后缀
-if(QT_VERSION_MAJOR EQUAL 6)
-    set(DTK_SUFFIX 6)
-else()
-    set(DTK_SUFFIX "")
-endif()
-
-find_package(Dtk${DTK_SUFFIX}Core REQUIRED)
-find_package(Dtk${DTK_SUFFIX}Gui REQUIRED)
-find_package(Dtk${DTK_SUFFIX}Widget REQUIRED)
-
-add_executable(myapp
-    main.cpp
-    mainwindow.cpp
-)
-
-target_link_libraries(myapp PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Widgets
-    Dtk${DTK_SUFFIX}::Core
-    Dtk${DTK_SUFFIX}::Gui
-    Dtk${DTK_SUFFIX}::Widget
-)
-```
+- `find_package(QT NAMES Qt6 Qt5 ...)` 自动检测 Qt 版本
+- 根据 `QT_VERSION_MAJOR` 设置 `DTK_SUFFIX`（`6` 或空）
+- 包名、target、链接库全部使用 `${DTK_SUFFIX}` 变量
 
 ### 1.3 使用元包简写
 
@@ -167,50 +111,11 @@ CMake 依赖：`Dtk6::Core`，**不需要** `Dtk6::Log`。
 
 ### 3.1 日志示例
 
-```cpp
-#include <QCoreApplication>
-#include <DLog>
-
-int main(int argc, char *argv[])
-{
-    QCoreApplication app(argc, argv);
-
-    DLogManager::registerConsoleAppender();
-
-    qInfo() << "DTK application started";
-    return 0;
-}
-```
-
-CMake 依赖：`Dtk6::Core`。
+完整示例见 [assets/src/main-log.cpp](../assets/src/main-log.cpp)。CMake 依赖：`Dtk6::Core`。
 
 ### 3.2 QWidget 应用（DApplication + DMainWindow）
 
-QWidget 应用**强烈建议**使用 `DApplication` 而非 `QApplication` 初始化，前者在
-`QApplication` 基础上额外处理了 DTK 主题、字体、单实例等特性。
-
-```cpp
-#include <DApplication>
-#include <DMainWindow>
-#include <DTitlebar>
-#include <DPalette>
-#include <DGuiApplicationHelper>
-
-int main(int argc, char *argv[])
-{
-    DApplication app(argc, argv);
-
-    DMainWindow w;
-    w.setMinimumSize(800, 600);
-    w.titlebar()->setTitle("My DTK App");
-    w.titlebar()->setIcon(DIconTheme::findQIcon("deepin"));
-    w.show();
-
-    return app.exec();
-}
-```
-
-CMake 依赖：`Dtk6::Gui + Dtk6::Widget`。
+完整示例见 [assets/src/main.cpp](../assets/src/main.cpp)。QWidget 应用**强烈建议**使用 `DApplication` 而非 `QApplication` 初始化，前者在 `QApplication` 基础上额外处理了 DTK 主题、字体、单实例等特性。CMake 依赖：`Dtk6::Gui + Dtk6::Widget`。
 
 ---
 

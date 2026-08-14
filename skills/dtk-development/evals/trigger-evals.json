@@ -1,0 +1,18 @@
+[
+  {"query":"用 DTK6 QWidget 创建一个带标题栏和设置对话框的桌面应用。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"DIconButton 的 dci 图标在暗色主题下名称查找失败。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"给 deepin 应用接入 DConfig，并提供 meta 默认值。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"DMainWindow 在 Wayland 下的圆角和模糊效果不正确。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"一个仍使用 DTK5 和 Qt5 的 v25 应用，怎样创建 Dialog、按钮和列表页面？","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"为 QWidget 应用配置单实例、日志、翻译和桌面文件。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"修改 dtkwidget 的 ChameleonStyle，让自定义控件读取新的 palette role。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"使用 DDBusSender 调用系统服务并处理异步返回。","should_trigger":true,"expected_skill":"dtk-development"},
+  {"query":"在 DDE 控制中心新增蓝牙设置插件。","should_trigger":false,"expected_skill":"dde-control-center-development"},
+  {"query":"写一个 dde-shell Panel 管理顶部状态栏。","should_trigger":false,"expected_skill":"dde-shell-development"},
+  {"query":"实现 PluginsItemInterfaceV2 快捷面板插件。","should_trigger":false,"expected_skill":"dde-tray-development"},
+  {"query":"控制中心搜索不到新加的 DccObject。","should_trigger":false,"expected_skill":"dde-control-center-development"},
+  {"query":"dde-tray-loader 的右键菜单 JSON 没有响应。","should_trigger":false,"expected_skill":"dde-tray-development"},
+  {"query":"LayerShell 顶栏需要设置 exclusionZone。","should_trigger":false,"expected_skill":"dde-shell-development"},
+  {"query":"纯 Qt 控制台程序解析一个 JSON 文件。","should_trigger":false,"expected_skill":null},
+  {"query":"写一个不依赖 DTK 的 Qt Quick 跨平台示例。","should_trigger":false,"expected_skill":null}
+]

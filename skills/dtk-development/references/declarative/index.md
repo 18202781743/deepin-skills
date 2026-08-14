@@ -9,11 +9,14 @@
 - QML菜单/列表/进度条
 - DTK QML控件
 - Qt Quick DTK样式
+- 窗口圆角/模糊/阴影
+- 取色器/主题颜色
 
 **API 接口描述：**
 - org.deepin.dtk / DTK QML
 - ApplicationWindow / DialogWindow
 - Button / TextField / ItemDelegate
+- DWindow / ColorSelector
 
 ---
 
@@ -31,7 +34,7 @@ dtkdeclarative 对 Qt Quick Controls 进行 DTK 主题封装并提供自定义�
 
 需要什么类型的 QML 控件？
     │
-    ├─ 窗口 → ApplicationWindow / DialogWindow
+    ├─ 窗口 → ApplicationWindow / DialogWindow / DWindow（窗口效果）
     │
     ├─ 按钮 → Button / RecommandButton / WarningButton / FloatingButton
     │
@@ -53,7 +56,11 @@ dtkdeclarative 对 Qt Quick Controls 进行 DTK 主题封装并提供自定义�
     │
     ├─ 进度 → ProgressBar / WaterProgressBar / BusyIndicator
     │
-    └─ 滑动 → Slider / TipsSlider / ScrollBar
+    ├─ 滑动 → Slider / TipsSlider / ScrollBar
+    │
+    ├─ 颜色 → ColorSelector（取色器/主题感知）
+    │
+    └─ 窗口效果 → DWindow（圆角/阴影/模糊/边框）
 ```
 
 ## 按分类查阅
@@ -67,6 +74,8 @@ dtkdeclarative 对 Qt Quick Controls 进行 DTK 主题封装并提供自定义�
 | 面板与视觉 | [panels.md](panels.md) | BoxPanel, FloatingPanel, HighlightPanel |
 | 列表 | [lists.md](lists.md) | ItemDelegate, CheckDelegate |
 | 进度与滑动 | [progress.md](progress.md) | ProgressBar, WaterProgressBar, Slider |
+| 颜色系统 | [color-selector.md](color-selector.md) | ColorSelector, Palette 调色板定义 |
+| 窗口效果 | [dwindow.md](dwindow.md) | DWindow 附加属性（圆角/阴影/模糊/边框） |
 
 ## 相关文档
 

@@ -37,6 +37,17 @@ DDE 控制中心（dde-control-center）是 DDE 桌面环境的系统设置面�
 | 查找 C++ API（DccObject、DccApp、DccFactory 等） | [references/cpp-api.md](references/cpp-api.md) |
 | 查找 QML 组件（DccGroupView、DccRepeater、DccDBusInterface 等） | [references/qml-api.md](references/qml-api.md) |
 | 调试技巧与常见问题排查 | [references/debugging.md](references/debugging.md) |
+| 常见陷阱与反模式 | [references/gotchas.md](references/gotchas.md) |
+
+## 工程模板
+
+创建新插件时可从 `assets/` 目录复制模板文件：
+
+| 模板 | 路径 |
+|------|------|
+| CMakeLists.txt | [assets/cmake/CMakeLists.txt](assets/cmake/CMakeLists.txt) |
+| 插件元数据 QML | [assets/qml/PluginName.qml](assets/qml/PluginName.qml) |
+| C++ 数据对象 | [assets/src/plugin.cpp](assets/src/plugin.cpp) |
 
 ## Evals 测试用例
 

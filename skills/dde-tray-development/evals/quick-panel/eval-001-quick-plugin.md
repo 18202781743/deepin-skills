@@ -23,3 +23,15 @@
 - [ ] 配置元数据路径为 `/usr/share/dsg/configs/org.deepin.ds.dock/org.deepin.ds.dock.tray.json`
 - [ ] 使用 App ID `org.deepin.ds.dock`、Resource `org.deepin.ds.dock.tray` 和 Key `quickPlugins`
 - [ ] 使用 `dde-dconfig` 读取现有列表，并在保留已有值的前提下添加 `pluginName()`
+
+## 评分标准
+
+| 等级 | 条件 |
+|------|------|
+| ✅ **PASS** | 所有验证要点全部满足，代码可编译或语法正确 |
+| ⚠️ **PARTIAL** | 核心功能满足（第 1-2 项），但边缘检查项未通过 |
+| ❌ **FAIL** | 核心功能未实现，或使用了禁止的模式
+
+## 反模式检查
+- [ ] Type_Tray 与 Type_Quick 未互斥使用
+- [ ] 快捷面板未选 Quick_Panel_* 布局标志

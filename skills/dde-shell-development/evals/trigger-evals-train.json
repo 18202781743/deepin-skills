@@ -1,0 +1,72 @@
+[
+  {
+    "query": "给顶栏加一个显示 CPU 温度的 Shell 小组件。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "创建一个 Panel，并在里面加载多个 Containment。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "Applet 安装后没有被插件加载器发现，帮我排查元数据和路径。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "做一个贴靠左侧、占用排他区域的 Wayland 面板窗口。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "两个 Shell 小组件需要互相调用方法。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell Applet 插件用 DConfig 保存用户偏好设置，配置 ID 和 appId 怎么命名。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell Panel 的模糊效果在 Wayland 下不生效，DBlurEffectWidget 需要怎么设置。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell 插件中 D.DTK.fontManager 字体大小不跟随系统缩放。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell 插件需要使用 DPaletteHelper 获取当前主题的 ItemBackground 颜色。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "实现 V2 托盘接口的右键菜单。",
+    "should_trigger": false,
+    "expected_skill": "dde-tray-development"
+  },
+  {
+    "query": "在控制中心增加显示设置模块。",
+    "should_trigger": false,
+    "expected_skill": "dde-control-center-development"
+  },
+  {
+    "query": "用 DMainWindow 写一个普通 DTK 应用。",
+    "should_trigger": false,
+    "expected_skill": "dtk-development"
+  },
+  {
+    "query": "普通 Qt 程序使用 QSystemTrayIcon。",
+    "should_trigger": false,
+    "expected_skill": "dtk-development"
+  },
+  {
+    "query": "DConfig meta 覆盖值没有生效。",
+    "should_trigger": false,
+    "expected_skill": "dtk-development"
+  }
+]

@@ -11,10 +11,12 @@
 - 打开文件/打开URL
 - 日志管理/单实例
 - 拼音转换/文件系统工具
+- 标准路径/文件监听
 
 **API 接口描述：**
 - DSysInfo / DDBusSender / DWindowManagerHelper
 - DDesktopServices / DLogManager / DSingleton
+- DStandardPaths / DFileWatcher / DFileCopyWorker
 
 ---
 
@@ -35,6 +37,7 @@ DTK 工具类与核心类提供主题系统、字体管理、系统信息、DBus
 | DDesktopServices | dtkcore/dtkgui | [desktop-services.md](desktop-services.md) |
 | DLogManager | dtkcore | [log.md](log.md) |
 | DSingleton | dtkcore | [singleton.md](singleton.md) |
+| 文件系统工具 | dtkcore | [util.md](util.md) |
 
 ## 快速决策树
 
@@ -62,8 +65,11 @@ DTK 工具类与核心类提供主题系统、字体管理、系统信息、DBus
     ├─ 日志？
     │   └─ DLogManager → [log.md](log.md)
     │
-    └─ 单实例/进程间通信？
-        └─ DSingleton → [singleton.md](singleton.md)
+    ├─ 单实例/进程间通信？
+    │   └─ DSingleton → [singleton.md](singleton.md)
+    │
+    └─ 标准路径/文件监听/文件复制？
+        └─ DStandardPaths / DFileWatcher / DFileCopyWorker → [util.md](util.md)
 ```
 
 ## 相关文档

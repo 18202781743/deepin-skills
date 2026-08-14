@@ -20,3 +20,16 @@
 - [ ] DGuiApplicationHelper 提供主题切换信号
 - [ ] DStyleHelper 根据控件状态选择调色板颜色
 - [ ] 数据流：系统主题 → DGuiApplicationHelper → DPalette → DStyleHelper → 控件
+
+## 评分标准
+
+| 等级 | 条件 |
+|------|------|
+| ✅ **PASS** | 所有验证要点全部满足，回答准确覆盖 DTK 架构层次 |
+| ⚠️ **PARTIAL** | 核心架构理解正确，但部分细节或层次关系有偏差 |
+| ❌ **FAIL** | 架构理解错误，或混淆了不同 DTK 层次/模块的职责 |
+
+## 反模式检查
+
+- [ ] 未混淆 dtkgui/dtkwidget/dtkdeclarative 的职责边界
+- [ ] 未将平台插件层与控件层混为一谈

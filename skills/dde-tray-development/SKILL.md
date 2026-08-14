@@ -36,6 +36,15 @@ DDE 托盘插件运行在任务栏托盘区域，继承 PluginsItemInterfaceV2 �
 | 开发快捷面板插件 | [references/quick-panel-guide.md](references/quick-panel-guide.md) |
 | 实现消息协议通信 | [references/message-protocol.md](references/message-protocol.md) |
 | 实现右键菜单 | [references/context-menu.md](references/context-menu.md) |
+| 常见陷阱与反模式 | [references/gotchas.md](references/gotchas.md) |
+
+## 工程模板
+
+创建新插件时可从 `assets/` 目录复制模板文件：
+
+| 模板 | 路径 |
+|------|------|
+| 插件元数据 JSON | [assets/cmake/plugin-metadata.json](assets/cmake/plugin-metadata.json) |
 
 ## Evals 测试用例
 

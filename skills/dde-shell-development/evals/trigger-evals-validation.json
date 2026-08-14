@@ -1,0 +1,72 @@
+[
+  {
+    "query": "Dock 的弹出窗口在第二块显示器上偏移了，应该从哪些锚点和屏幕参数查起？",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "纯 QML 的面板插件不需要 C++，请给出 package 和安装配置。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "Shell 重启后我的 containment 没有恢复父子关系。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "需要一个贴屏幕底部的窗口，并正确设置 exclusion zone。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "自定义 Applet 的生命周期回调没有按预期调用。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell Applet 插件用 DConfig 保存用户偏好设置，配置 ID 和 appId 怎么命名。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell Panel 的模糊效果在 Wayland 下不生效，DBlurEffectWidget 需要怎么设置。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell 插件中 D.DTK.fontManager 字体大小不跟随系统缩放。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "dde-shell 插件需要使用 DPaletteHelper 获取当前主题的 ItemBackground 颜色。",
+    "should_trigger": true,
+    "expected_skill": "dde-shell-development"
+  },
+  {
+    "query": "托盘 loader 无法加载 api 2.0.0 插件。",
+    "should_trigger": false,
+    "expected_skill": "dde-tray-development"
+  },
+  {
+    "query": "控制中心 QML 缓存导致页面修改不生效。",
+    "should_trigger": false,
+    "expected_skill": "dde-control-center-development"
+  },
+  {
+    "query": "DIconButton 的 dci 图标不随主题切换。",
+    "should_trigger": false,
+    "expected_skill": "dtk-development"
+  },
+  {
+    "query": "普通 Qt Quick 跨平台应用要显示一个列表。",
+    "should_trigger": false,
+    "expected_skill": null
+  },
+  {
+    "query": "控制中心插件需要增加搜索关键词。",
+    "should_trigger": false,
+    "expected_skill": "dde-control-center-development"
+  }
+]

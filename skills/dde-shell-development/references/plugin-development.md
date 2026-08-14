@@ -28,36 +28,13 @@ my-plugin/
 ### 纯 QML Applet（无 C++）
 
 CMakeLists.txt：
-```cmake
-ds_install_package(PACKAGE org.deepin.ds.example.applet)
-```
-
+`find_package(DdeShell REQUIRED)`，详见 [assets/cmake/CMakeLists.txt](../assets/cmake/CMakeLists.txt)。
 metadata.json：
-```json
-{
-    "Plugin": {
-        "Version": "1.0",
-        "Id": "org.deepin.ds.example.applet",
-        "Url": "main.qml",
-        "Parent": "org.deepin.ds.dock"
-    }
-}
+完整模板见 [assets/qml/metadata.json](../assets/qml/metadata.json)。关键要点：`pluginType` 与 `pluginId` 必须与实际类型匹配。
 ```
 
 main.qml：
-```qml
-import QtQuick
-import QtQuick.Controls
-import org.deepin.ds 1.0
-
-AppletItem {
-    implicitWidth: 100; implicitHeight: 100
-    Text {
-        anchors.centerIn: parent
-        text: Applet.pluginId
-    }
-}
-```
+完整模板见 [assets/qml/Package.qml](../assets/qml/Package.qml)。关键要点：`Applet` 的 `id` 与 `Plugin.Parent` 一致。
 
 ### 带 C++ 后端的 Applet
 
