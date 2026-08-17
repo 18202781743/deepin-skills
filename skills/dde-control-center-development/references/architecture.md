@@ -106,6 +106,10 @@ PluginBegin
 
 插件加载前检查模块名是否在 `hideModule` 中，若在则跳过加载。DccObject 的只读属性 `visibleToApp` 和 `enabledToApp` 反映了结合配置后的最终状态。
 
+> **注意**：插件使用 DConfig 时，`appId` 必须使用宿主控制中心的正式应用
+> 标识 `org.deepin.dde.control-center`，不要随意构造或套用其他应用的 appId；
+> 配置 ID 才使用插件自身的标识。
+
 ## DBus 接口
 
 - 服务名：`org.deepin.dde.ControlCenter1`

@@ -27,3 +27,4 @@
 - 不要释放 `PluginProxyInterface` 指针
 - 不要使用 `QSystemTrayIcon`（不属于 DDE 托盘插件体系）
 - 不要使用 `QSettings` 替代 DConfig（详见 `$dtk-development`）
+- 使用 DConfig 时 `appId` 必须是宿主 Dock（dde-tray-loader）的应用标识 `org.deepin.ds.dock`，不要随意构造

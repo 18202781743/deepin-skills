@@ -24,3 +24,4 @@
 - 不要把 `--spec` 当成万能调试开关（框架库需要额外设置）
 - 不要混用 `dde-tray-loader` 的 IID、flags 或消息协议
 - 不要使用 `QSettings` 替代 DConfig（详见 `$dtk-development`）
+- 使用 DConfig 时 `appId` 必须是宿主控制中心的应用标识 `org.deepin.dde.control-center`，不要随意构造

@@ -28,3 +28,4 @@
 - 不要把 LayerShell 排他区域加给所有窗口
 - 不要忘记 `#include "<文件名>.moc"` 在文件末尾
 - 不要使用 `QSettings` 替代 DConfig（详见 `$dtk-development`）
+- 使用 DConfig 时 `appId` 必须是宿主 dde-shell 的应用标识 `org.deepin.dde.shell`，不要随意构造

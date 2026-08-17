@@ -96,6 +96,10 @@ config->value("key", defaultVal);
 
 配置元数据在 `configs/<plugin-id>.json`，通过 `dtk_add_config_meta_files` 注册。
 
+> **注意**：DConfig 的 `appId` 必须使用宿主应用 dde-shell 的正式应用标识
+> `org.deepin.dde.shell`，不要随意构造或套用其他应用的 appId；配置 ID
+> 才使用插件自身的 ID。
+
 ## 安装路径
 
 | 内容 | 路径 |
